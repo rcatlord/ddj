@@ -1,0 +1,280 @@
+---
+title: "Transforming data in R"
+lang: "en-GB"
+output:
+  html_document:
+    theme: united
+    highlight: haddock
+    mathjax: null
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    self_contained: TRUE
+    df_print: tibble
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+```
+
+This semi-guided tutorial uses functions from the <a href="https://dplyr.tidyverse.org" target="_blank">dplyr</a> package to transform data in R. You'll learn how to rename columns, subset rows and generate summary statistics.
+
+We'll practice using the penguins dataset from the <a href="https://allisonhorst.github.io/palmerpenguins" target="_blank">palmerpenguins</a> package which contains body measurements for three different penguin species based in the Palmer Archipelago in Antarctica. The data are available by CC-0 license in accordance with the <a href="http://pal.lternet.edu/data/policies" target="_blank">Palmer Station LTER Data Policy</a> and the <a href="https://lternet.edu/data-access-policy" target="_blank">LTER Data Access Policy for Type I data</a>.
+
+```{r, echo=FALSE, out.width="50%", fig.cap="Illustration: Allison Horst"}
+knitr::include_graphics("penguins.png")
+```
+
+First let's install the necessary R packages, <a href="https://dplyr.tidyverse.org" target="_blank">dplyr</a> and <a href="https://allisonhorst.github.io/palmerpenguins" target="_blank">palmerpenguins</a>. You will only need to install the packages once.
+
+```{r, eval=FALSE}
+install.packages(c("dplyr", "palmerpenguins"), dependencies = TRUE, type = "win.binary")
+```
+
+Next we load the packages so that the functions in `dplyr` and the data in `palmerpenguins` are available in the session.
+
+```{r}
+library(dplyr) ; library(palmerpenguins)
+```
+
+Run `penguins` to print the data into the console. 
+
+```{r}
+penguins
+```
+
+Now, let's have a look at the structure of the penguins data using the function `glimpse()`.
+```{r}
+glimpse(penguins)
+```
+
+The data are in a <a href="http://vita.had.co.nz/papers/tidy-data.pdf" target="_blank">tidy</a> format so variables are in columns and observations are in rows. There are 8 variables and 344 observations with some missing values recorded as NA. To learn more about the variables you can run `?penguins` in the console.
+
+### The dplyr functions
+
+There are several functions for manipulating data in the `dplyr` package. The functions `select()`, `rename()`, `mutate()`, and `relocate()` can be applied to columns, `filter()`, `slice()`, and `arrange()` to rows, and `summarise()` to groups of rows. 
+
+To link each step of the data manipulation process we use the pipe operator. If you are using R 4.1.0. or greater you can use the base R pipe `|>` otherwise we stick with what's called the <a href="https://magrittr.tidyverse.org/reference/pipe.html" target="_blank">magrittr</a> pipe: `%>%`. In either case, the pipe is read as 'then'. So following the example code below, we supply the penguins dataset then count the number of distinct species and then store the relative proportions in a new variable.
+
+```{r}
+penguins %>%
+  count(species) %>%
+  mutate(prop = n / sum(n)) 
+```
+
+Now, let's look at each of the dplyr functions used for transforming data in turn.
+
+### `select()` {.tabset}
+*Pick and exclude variables in a dataframe*
+
+#### by name
+Select the variables `species`, `island`, `sex`, and `body_mass_g` by separating them by commas.
+```{r}
+penguins %>% 
+  select(species, island, sex, body_mass_g)
+```
+
+#### by exclusion
+Select all the variables except `species` by prefixing an exclamation mark.
+```{r}
+penguins %>% 
+  select(!species)
+```
+
+#### a consecutive range
+Select the first three variables using a colon to separate the first and last variables.
+```{r}
+penguins %>% 
+  select(1:3)
+```
+
+#### begins with
+Select variables that match names that begin with "bill". `starts_with()` is one of a number of useful helper functions that can be used with `select()` including `ends_with()` and `contains()`.
+```{r}
+penguins %>% 
+  select(starts_with("bill"))
+```
+
+#### by numeric
+Select all variables that have numeric values.
+```{r}
+penguins %>% 
+  select(where(is.numeric))
+```
+
+#### reorder
+Change the order of the variables in a dataframe Here we pick the variables we want in the order we want them and then use the helper function `everything()` to add in the remaining variables.
+```{r}
+penguins %>% 
+  select(year, island, species, sex, everything())
+```
+
+### `rename()`
+*Change column names*     
+The new variable name is on the left of =.
+```{r}
+penguins %>% 
+  rename(culmen_length_mm = bill_length_mm, 
+         culmen_depth_mm = bill_depth_mm)
+```
+
+### `mutate()` {.tabset}
+*Add a new variable*
+
+#### calculate
+Divide penguin bill length by bill depth and store the results in a new variable called `bill_ratio`.
+```{r}
+penguins %>% 
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm)
+```
+
+#### recode
+Create a new variable containing values dependent on multiple if else condition(s) using the `case_when()` helper function.
+```{r}
+penguins %>% 
+  mutate(category = case_when(
+    body_mass_g <= 3000 ~ "small",
+    body_mass_g > 3000 & body_mass_g <= 4500 ~ "medium",
+    body_mass_g > 4500 ~ "large")
+    )
+```
+
+#### relevel
+Change the order of factor levels of `island` using the [forcats](https://forcats.tidyverse.org/) package function `fct_relevel`.
+```{r, eval=FALSE}
+penguins %>% 
+  mutate(island = forcats::fct_relevel(island, "Torgersen", "Biscoe", "Dream"))
+```
+
+### `relocate()` {.tabset}
+*Move variable(s) before or after another*
+
+#### to beginning
+Make the variable `year` the 1st variable in the dataframe. 
+```{r}
+penguins %>%
+  relocate(year)
+```
+
+#### after specific variable
+Using the `contains()` helper function, move all variables containing an underscore after the `year` variable.
+```{r}
+penguins %>% 
+  relocate(contains("_"), .after = year)
+```
+
+#### after type
+Move variables with numeric values after those of a factor type.
+```{r}
+penguins %>%
+  relocate(where(is.numeric), .after = where(is.factor))
+```
+
+
+### `filter()` {.tabset}
+*Subset rows in a dataframe by an expression*
+
+#### greater than
+Subset rows where values of `bill_length_mm` are greater than or equal to 50.
+```{r}
+penguins %>% 
+  filter(bill_length_mm >= 50)
+```
+
+#### equal to
+Subset rows where values of `island` are equal to ""Biscoe".
+```{r}
+penguins %>% 
+  filter(island == "Biscoe")
+```
+
+#### not equal to
+Subset rows where values of `sex` are not equal to NA. This filters out the missing values from the `sex` variable.
+```{r}
+penguins %>% 
+  filter(!is.na(sex))
+```
+
+#### with regex
+Subset rows where the values of `island` start with "T". The function `str_detect()` is from the [stringr](https://stringr.tidyverse.org/) package and looks for values that match a particular string.
+```{r}
+penguins %>% 
+  filter(stringr::str_detect(island, "^T"))
+```
+
+#### by multiple conditions
+Subset rows where the values of `island` and `year` match specific conditions.
+```{r}
+penguins %>% 
+  filter(island == "Torgersen" & year == 2009)
+```
+
+#### by a vector
+Subset rows where the values of `species` match those contained in the vector of values, namely "Chinstrap" and "Gentoo". 
+```{r}
+penguins %>% 
+  filter(species %in% c("Chinstrap", "Gentoo"))
+```
+
+### `slice()`
+*Subset rows based on their integer location*
+```{r}
+penguins %>% 
+  slice(1:5)
+```
+
+### `arrange()` {.tabset}
+*Change the order of rows in a dataframe*
+
+#### ascending order
+```{r}
+penguins %>% 
+  arrange(bill_length_mm)
+```
+
+#### descending order
+```{r}
+penguins %>% 
+  arrange(desc(bill_length_mm))
+```
+
+### `count()` {.tabset}
+*Count unique values.*
+
+#### by one variable
+```{r}
+penguins %>% 
+  count(island)
+```
+
+#### by two variables and sort
+```{r}
+penguins %>% 
+  count(island, sex, sort = TRUE)
+```
+
+### `group_by()` and `summarise()` {.tabset}
+*Generate summary statistics by group*
+```{r}
+penguins %>% 
+  group_by(island) %>% 
+  summarise(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
+```
+
+### `across()`
+*Apply transformations to multiple variables*
+```{r}
+penguins %>%
+  group_by(species) %>%
+  summarize(across(c(bill_length_mm, body_mass_g), mean, na.rm = TRUE))
+```
+
+---
+
+**Further resources**   
+
+- <a href="https://dplyr.tidyverse.org" target="_blank">dplyr homepage</a>     
+- <a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf" target="_blank">dplyr cheatsheet</a>     
+- <a href="https://r4ds.hadley.nz" target="_blank">R for Data Science, 2nd edition</a>     
