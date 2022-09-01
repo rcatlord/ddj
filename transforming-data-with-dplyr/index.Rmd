@@ -35,8 +35,8 @@ This semi-guided tutorial uses functions from the <a href="https://dplyr.tidyver
 
 We'll practice using the penguins dataset from the <a href="https://allisonhorst.github.io/palmerpenguins" target="_blank">palmerpenguins</a> package which contains body measurements for three different penguin species based in the Palmer Archipelago in Antarctica. The data are available by CC-0 license in accordance with the <a href="http://pal.lternet.edu/data/policies" target="_blank">Palmer Station LTER Data Policy</a> and the <a href="https://lternet.edu/data-access-policy" target="_blank">LTER Data Access Policy for Type I data</a>.
 
-```{r, echo=FALSE, out.width="30%", fig.cap="Illustration: Allison Horst"}
-knitr::include_graphics("img/palmerpenguins.png")
+```{r, echo=FALSE, out.width="30%", out.height="20%", fig.cap="caption", fig.show='hold', fig.align='center', fig.cap="Source: RStudio / Allison Horst"}
+knitr::include_graphics(c("img/dplyr.png","img/palmerpenguins.png"))
 ```
 
 First let's install the necessary R packages, <a href="https://dplyr.tidyverse.org" target="_blank">dplyr</a> and <a href="https://allisonhorst.github.io/palmerpenguins" target="_blank">palmerpenguins</a>. You will only need to install the packages once.
