@@ -1,13 +1,3 @@
----
-pagetitle: "Plot"
-output:
-  html_document:
-    keep_md: yes
----
-
-
-
-
 ```r
 library(tidyverse)
 ```
@@ -66,7 +56,7 @@ df %>%
   coord_cartesian(expand = FALSE, clip = "off")
 ```
 
-![](plot_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](plot.png)<!-- -->
 
 
 ```r
