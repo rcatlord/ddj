@@ -38,9 +38,9 @@
 #' ## Read data 
 #' **from a folder**      
 #'
-#' - `read_csv()` 
+#' - `read_excel()` 
 #' 
-#' - `read_excel()`  
+#' - `read_csv()`  
 
 #'
 #' **from a URL**      
