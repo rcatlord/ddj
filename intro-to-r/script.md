@@ -39,9 +39,9 @@ If you haven’t set up RStudio on your ONS computer check out these
 
 **from a folder**
 
-  - `read_csv()`
-
   - `read_excel()`
+
+  - `read_csv()`
 
 **from a URL**
 
