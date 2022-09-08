@@ -1,5 +1,5 @@
 # ddj
-Materials from the data journalism knowledge sharing sessions.
+Materials from the data-driven journalism knowledge sharing sessions.
 
 ### Live coded scripts
 
