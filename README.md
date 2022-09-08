@@ -26,6 +26,3 @@ Materials from the data-driven journalism knowledge sharing sessions.
 **Packages**      
 - [fiverthirtyeight](https://cran.r-project.org/web/packages/fivethirtyeight/index.html)
 - [bbplot](https://github.com/bbc/bbplot)
-
-**Miscellaneous**    
-- The Economist, [We're The Economist's data team. Ask us anything!](https://www.reddit.com/r/dataisbeautiful/comments/nh1wks/were_the_economists_data_team_ask_us_anything).
