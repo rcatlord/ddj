@@ -6,7 +6,7 @@ Materials from the data-driven journalism knowledge sharing sessions.
 - [Transforming data with dplyr](https://github.com/rcatlord/ddj/blob/main/transforming-data-with-dplyr/script.md)
 
 ### Semi-guided tutorials
-- [Transforming data with dplyr](https://rcatlord.github.io/ddj/reference/transforming-data-with-dplyr/)
+- [Transforming data with dplyr](https://rcatlord.github.io/ddj/guides/transforming-data-with-dplyr/)
 
 ---
 
