@@ -2,11 +2,10 @@
 Materials from the data-driven journalism knowledge sharing sessions.
 
 ### Live coded scripts
-
 - [An intro to R](https://github.com/rcatlord/ddj/blob/main/intro-to-r/script.md)
 - [Transforming data with dplyr](https://github.com/rcatlord/ddj/blob/main/transforming-data-with-dplyr/script.md)
 
-### Reference guides
+### Semi-guided tutorials
 - [Transforming data with dplyr](https://rcatlord.github.io/ddj/reference/transforming-data-with-dplyr/)
 
 ---
