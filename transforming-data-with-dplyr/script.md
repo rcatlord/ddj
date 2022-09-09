@@ -192,7 +192,17 @@ df <- raw %>%
          6:11) %>% 
   pivot_longer(-c(area_code, area_name, frequency), names_to = "year", values_to = "percent") %>% 
   filter(area_code %in% lookup | area_name == "England")
+
+glimpse(df)
 ```
+
+    ## Rows: 7,392
+    ## Columns: 5
+    ## $ area_code <chr> "E92000001", "E92000001", "E92000001", "E92000001", "E920000~
+    ## $ area_name <chr> "England", "England", "England", "England", "England", "Engl~
+    ## $ frequency <chr> "At least once per month", "At least once per month", "At le~
+    ## $ year      <chr> "2021", "2020", "2019", "2018", "2017", "2016", "2021", "202~
+    ## $ percent   <dbl> 13.148585, 16.095200, 16.058380, 16.096600, 16.877400, 17.10~
 
 ## Explore data
 

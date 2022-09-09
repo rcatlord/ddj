@@ -59,6 +59,8 @@ df <- raw %>%
   pivot_longer(-c(area_code, area_name, frequency), names_to = "year", values_to = "percent") %>% 
   filter(area_code %in% lookup | area_name == "England")
 
+glimpse(df)
+
 #' ## Explore data
 #' 
 #' 1.  What proportion of adults cycled at least once a week for any purpose in England in 2021?
