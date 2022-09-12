@@ -1,7 +1,7 @@
 An intro to R for data journalism
 ================
 henrypartridge
-2022-09-02
+2022-09-12
 
 ## Learning objectives
 
@@ -58,10 +58,10 @@ library(tidyverse) ; library(readxl)
 **from a URL**
 
 ``` r
-df <- read_csv("https://raw.githubusercontent.com/rcatlord/ddj/main/data/babynames1996to2020.csv")
+df <- read_csv("https://raw.githubusercontent.com/rcatlord/ddj/main/intro-to-r/data/babynames1996to2020.csv")
 ```
 
-    ## 
+    ##
     ## ── Column specification ─────────────────────────────────────────────────────────────
     ## cols(
     ##   year = col_double(),
@@ -314,8 +314,8 @@ filter(df, name %in% c("Thor", "Odin"))
 -   `group_by()`
 
 ``` r
-df %>% 
-  group_by(year) %>% 
+df %>%
+  group_by(year) %>%
   top_n(1, n)
 ```
 
@@ -336,8 +336,8 @@ df %>%
     ## # … with 15 more rows
 
 ``` r
-df %>% 
-  group_by(year, sex) %>% 
+df %>%
+  group_by(year, sex) %>%
   top_n(1, n)
 ```
 
@@ -393,31 +393,3 @@ ggplot(df_sub, aes(x = year, y = n, colour = name)) +
 ``` r
 #write_csv(df_sub, "outputs/names.csv")
 ```
-
-## Further resources
-
-**Beginners**  
-- [RStudio primers](https://rstudio.cloud/learn/primers)  
-- [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and
-Garrett Grolemund
-
-**Data visualisation**  
-- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz)
-by Claus Wilke  
-- [Data Visualization: A practical introduction](http://socviz.co/) by
-Kieran Healy  
-- [BBC Visual and Data Journalism cookbook for R
-graphics](https://bbc.github.io/rcookbook)
-
-**Statistics**  
-- [Discovering Statistics Using
-R](https://us.sagepub.com/en-us/nam/discovering-statistics-using-r-and-rstudio/book261351)
-by Andy Field  
-- [Statistics: An Introduction Using
-R](https://www.wiley.com/en-gb/Statistics%3A+An+Introduction+Using+R%2C+2nd+Edition-p-9781118941096)
-by Michael J. Crawley
-
-**Help**  
-- [StackOverflow](https://stackoverflow.com/questions/tagged/r)  
-- [RStudio Community](https://community.rstudio.com)  
-- [Twitter \#rstats hashtag](https://twitter.com/search?q=%23rstats)
