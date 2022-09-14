@@ -36,6 +36,6 @@ df <- left_join(child_poverty, air_pollution, by = "area_name") %>%
                            country_region %in% c("Scotland", "Northern Ireland") ~ "Scotland and Northern Ireland",
                            TRUE ~ country_region)) %>%
   filter(!is.na(air_pollution)) %>% 
-  relocate(country_region, .after = "area_name")
+  relocate(group, .after = "country_region")
 
 write_csv(df, "child_poverty_and_pm25.csv")
