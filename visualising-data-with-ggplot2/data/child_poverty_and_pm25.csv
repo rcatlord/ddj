@@ -1,0 +1,371 @@
+area_code,area_name,country_region,child_poverty,air_pollution,group
+E09000030,Tower Hamlets,London,0.5137,9.5904,London
+E09000025,Newham,London,0.4947,9.9782,London
+E09000002,Barking and Dagenham,London,0.4642,9.3629,London
+E09000012,Hackney,London,0.4529,9.4988,London
+E06000032,Luton,East of England,0.4458,7.7154,South East and East of England
+E09000031,Waltham Forest,London,0.4265,9.3565,London
+E08000021,Newcastle upon Tyne,North East,0.4237,5.0956,Midlands and North of England
+E08000025,Birmingham,West Midlands,0.422,7.8598,Midlands and North of England
+E08000003,Manchester,North West,0.4205,6.9909,Midlands and North of England
+E06000002,Middlesbrough,North East,0.4122,5.3676,Midlands and North of England
+E09000011,Greenwich,London,0.4007,9.063,London
+E08000032,Bradford,Yorkshire and The Humber,0.3981,6.7113,Midlands and North of England
+E08000024,Sunderland,North East,0.3971,4.9853,Midlands and North of England
+E08000028,Sandwell,West Midlands,0.3956,8.0632,Midlands and North of England
+E09000005,Brent,London,0.3945,8.6321,London
+E08000004,Oldham,North West,0.3928,6.8858,Midlands and North of England
+E06000003,Redcar and Cleveland,North East,0.3927,4.8847,Midlands and North of England
+E08000023,South Tyneside,North East,0.3906,5.1095,Midlands and North of England
+E06000001,Hartlepool,North East,0.3898,4.963,Midlands and North of England
+E06000031,Peterborough,East of England,0.3891,7.0092,South East and East of England
+E09000022,Lambeth,London,0.3879,9.5213,London
+E08000037,Gateshead,North East,0.3865,4.9933,Midlands and North of England
+E09000019,Islington,London,0.3822,9.4252,London
+E09000028,Southwark,London,0.3822,9.4796,London
+E08000030,Walsall,West Midlands,0.3806,7.6995,Midlands and North of England
+E06000010,"Kingston upon Hull, City of",Yorkshire and The Humber,0.38,6.6742,Midlands and North of England
+E06000021,Stoke-on-Trent,West Midlands,0.3777,6.152,Midlands and North of England
+E06000005,Darlington,North East,0.3769,4.9316,Midlands and North of England
+E06000047,County Durham,North East,0.3764,4.5091,Midlands and North of England
+E06000008,Blackburn with Darwen,North West,0.3761,5.9992,Midlands and North of England
+E09000026,Redbridge,London,0.3755,9.0673,London
+E08000001,Bolton,North West,0.3754,6.6274,Midlands and North of England
+E07000122,Pendle,North West,0.375,5.956,Midlands and North of England
+E08000031,Wolverhampton,West Midlands,0.3747,6.901,Midlands and North of England
+E06000004,Stockton-on-Tees,North East,0.3727,5.1459,Midlands and North of England
+E07000148,Norwich,East of England,0.3725,7.6879,South East and East of England
+E09000014,Haringey,London,0.3715,9.1096,London
+E09000009,Ealing,London,0.371,8.6011,London
+E09000018,Hounslow,London,0.3708,8.4869,London
+E07000202,Ipswich,East of England,0.3678,7.7167,South East and East of England
+E09000023,Lewisham,London,0.3658,9.3806,London
+E08000034,Kirklees,Yorkshire and The Humber,0.3656,6.4314,Midlands and North of England
+E08000019,Sheffield,Yorkshire and The Humber,0.364,5.963,Midlands and North of England
+W06000022,Newport,Wales,0.3632,6.5,Wales and South West
+E07000120,Hyndburn,North West,0.3614,6.1004,Midlands and North of England
+E07000117,Burnley,North West,0.3608,6.002,Midlands and North of England
+W06000015,Cardiff,Wales,0.36,6.8978,Wales and South West
+E08000035,Leeds,Yorkshire and The Humber,0.3594,7.1707,Midlands and North of England
+E09000015,Harrow,London,0.3592,8.0452,London
+E08000005,Rochdale,North West,0.3579,6.4198,Midlands and North of England
+E06000057,Northumberland,North East,0.3579,4.0907,Midlands and North of England
+W06000001,Isle of Anglesey,Wales,0.3563,3.7365,Wales and South West
+W06000019,Blaenau Gwent,Wales,0.3552,5.3678,Wales and South West
+W06000009,Pembrokeshire,Wales,0.3549,4.6741,Wales and South West
+W06000003,Conwy,Wales,0.3538,4.0534,Wales and South West
+W06000024,Merthyr Tydfil,Wales,0.3523,5.4595,Wales and South West
+E08000017,Doncaster,Yorkshire and The Humber,0.3523,5.8369,Midlands and North of England
+E08000022,North Tyneside,North East,0.352,5.1269,Midlands and North of England
+E06000016,Leicester,East Midlands,0.352,7.4888,Midlands and North of England
+W06000008,Ceredigion,Wales,0.3513,4.2693,Wales and South West
+E06000039,Slough,South East,0.3513,8.5034,South East and East of England
+W06000016,Rhondda Cynon Taf,Wales,0.3511,5.6116,Wales and South West
+E08000027,Dudley,West Midlands,0.3489,7.1665,Midlands and North of England
+W06000004,Denbighshire,Wales,0.3486,4.4451,Wales and South West
+E09000017,Hillingdon,London,0.3483,7.9806,London
+E06000012,North East Lincolnshire,Yorkshire and The Humber,0.3481,5.7869,Midlands and North of England
+W06000018,Caerphilly,Wales,0.3467,5.9326,Wales and South West
+E08000018,Rotherham,Yorkshire and The Humber,0.3464,6.1331,Midlands and North of England
+W06000010,Carmarthenshire,Wales,0.3463,4.8979,Wales and South West
+W06000002,Gwynedd,Wales,0.3439,3.7966,Wales and South West
+W06000020,Torfaen,Wales,0.3435,5.895,Wales and South West
+E08000026,Coventry,West Midlands,0.3413,7.2791,Midlands and North of England
+E07000073,Harlow,East of England,0.3394,7.2609,South East and East of England
+E08000033,Calderdale,Yorkshire and The Humber,0.3383,6.1798,Midlands and North of England
+E07000226,Crawley,South East,0.337,7.7097,South East and East of England
+E09000010,Enfield,London,0.3366,8.6116,London
+W06000012,Neath Port Talbot,Wales,0.3348,5.3732,Wales and South West
+W06000006,Wrexham,Wales,0.3341,5.1188,Wales and South West
+E08000016,Barnsley,Yorkshire and The Humber,0.3336,5.7142,Midlands and North of England
+E08000012,Liverpool,North West,0.3336,7.2827,Midlands and North of England
+W06000023,Powys,Wales,0.3334,4.3966,Wales and South West
+E06000045,Southampton,South East,0.3332,7.7067,South East and East of England
+E07000145,Great Yarmouth,East of England,0.3329,7.0886,South East and East of England
+E06000009,Blackpool,North West,0.3327,5.3293,Midlands and North of England
+E07000114,Thanet,South East,0.3311,7.1156,South East and East of England
+E07000010,Fenland,East of England,0.3309,7.1197,South East and East of England
+W06000013,Bridgend,Wales,0.3306,5.5085,Wales and South West
+E06000018,Nottingham,East Midlands,0.3298,7.1711,Midlands and North of England
+E08000006,Salford,North West,0.3294,6.7825,Midlands and North of England
+E06000013,North Lincolnshire,Yorkshire and The Humber,0.3294,5.4783,Midlands and North of England
+E07000123,Preston,North West,0.3281,5.9916,Midlands and North of England
+E07000168,Scarborough,Yorkshire and The Humber,0.3279,4.8155,Midlands and North of England
+E09000008,Croydon,London,0.3275,8.6684,London
+W06000011,Swansea,Wales,0.3275,5.452,Wales and South West
+E09000016,Havering,London,0.3274,8.2209,London
+E07000062,Hastings,South East,0.3267,7.1096,South East and East of England
+E06000023,"Bristol, City of",South West,0.3257,7.4701,Wales and South West
+E07000193,East Staffordshire,West Midlands,0.325,6.2595,Midlands and North of England
+E07000109,Gravesham,South East,0.3241,8.5523,South East and East of England
+E07000192,Cannock Chase,West Midlands,0.3221,6.2395,Midlands and North of England
+E06000044,Portsmouth,South East,0.3218,8.4931,South East and East of England
+E08000036,Wakefield,Yorkshire and The Humber,0.3198,6.0605,Midlands and North of England
+E08000008,Tameside,North West,0.319,7.0638,Midlands and North of England
+E06000020,Telford and Wrekin,West Midlands,0.3187,5.4117,Midlands and North of England
+E09000007,Camden,London,0.3187,9.1183,London
+E09000024,Merton,London,0.3182,9.081,London
+E07000237,Worcester,West Midlands,0.3156,6.3096,Midlands and North of England
+E06000046,Isle of Wight,South East,0.3154,6.5629,South East and East of England
+E08000002,Bury,North West,0.3144,6.5466,Midlands and North of England
+E07000090,Havant,South East,0.3139,7.4758,South East and East of England
+E07000066,Basildon,East of England,0.3114,7.6154,South East and East of England
+W06000005,Flintshire,Wales,0.3084,5.1552,Wales and South West
+E07000146,King's Lynn and West Norfolk,East of England,0.3078,6.9654,South East and East of England
+E06000035,Medway,South East,0.3075,8.9469,South East and East of England
+E06000034,Thurrock,East of England,0.30620000000000003,8.1419,South East and East of England
+E07000147,North Norfolk,East of England,0.3059,6.4733,South East and East of England
+E07000239,Wyre Forest,West Midlands,0.3053,5.899,Midlands and North of England
+E08000011,Knowsley,North West,0.3048,6.9569,Midlands and North of England
+E07000046,Torridge,South West,0.304,4.8741,Wales and South West
+E06000015,Derby,East Midlands,0.3027,7.057,Midlands and North of England
+E07000076,Tendring,East of England,0.3026,6.9437,South East and East of England
+E09000004,Bexley,London,0.3019,8.6516,London
+E07000236,Redditch,West Midlands,0.3016,6.1998,Midlands and North of England
+E07000108,Dover,South East,0.3016,6.7915,South East and East of England
+E07000061,Eastbourne,South East,0.3012,6.9282,South East and East of England
+E07000112,Folkestone and Hythe,South East,0.2995,6.7276,South East and East of England
+E06000042,Milton Keynes,South East,0.2976,7.5384,South East and East of England
+E07000113,Swale,South East,0.2974,7.7023,South East and East of England
+E07000199,Tamworth,West Midlands,0.2971,6.9065,Midlands and North of England
+E07000125,Rossendale,North West,0.2951,5.5107,Midlands and North of England
+E07000143,Breckland,East of England,0.2951,6.9427,South East and East of England
+E06000052,Cornwall,South West,0.2946,5.0302,Wales and South West
+E09000013,Hammersmith and Fulham,London,0.2941,9.2945,London
+S12000049,Glasgow City,Scotland,0.2941,4.2163,Scotland and Northern Ireland
+E07000088,Gosport,South East,0.2931,7.5617,South East and East of England
+E07000064,Rother,South East,0.2897,6.5466,South East and East of England
+W06000014,Vale of Glamorgan,Wales,0.2892,5.7306,Wales and South West
+E07000243,Stevenage,East of England,0.2888,7.0067,South East and East of England
+E06000055,Bedford,East of England,0.2884,7.0251,South East and East of England
+E06000027,Torbay,South West,0.2884,5.7249,Wales and South West
+E07000195,Newcastle-under-Lyme,West Midlands,0.2877,5.7174,Midlands and North of England
+E09000003,Barnet,London,0.2846,8.2407,London
+E09000032,Wandsworth,London,0.2845,9.2811,London
+E06000026,Plymouth,South West,0.2843,5.9874,Wales and South West
+E07000219,Nuneaton and Bedworth,West Midlands,0.2838,6.8187,Midlands and North of England
+E07000223,Adur,South East,0.282,7.2997,South East and East of England
+E07000081,Gloucester,South West,0.2803,7.2167,Wales and South West
+E07000043,North Devon,South West,0.2801,5.0623,Wales and South West
+E07000105,Ashford,South East,0.2787,6.981,South East and East of England
+E07000224,Arun,South East,0.2787,6.8259,South East and East of England
+E06000033,Southend-on-Sea,East of England,0.2782,7.4806,South East and East of England
+E07000138,Lincoln,East Midlands,0.2774,5.8611,Midlands and North of England
+E07000218,North Warwickshire,West Midlands,0.2747,6.3962,Midlands and North of England
+E08000010,Wigan,North West,0.2745,6.1276,Midlands and North of England
+E07000106,Canterbury,South East,0.2726,6.9876,South East and East of England
+E07000069,Castle Point,East of England,0.272,7.4819,South East and East of England
+E08000013,St. Helens,North West,0.2713,6.5153,Midlands and North of England
+E07000027,Barrow-in-Furness,North West,0.2709,5.2241,Midlands and North of England
+E07000107,Dartford,South East,0.2707,8.5953,South East and East of England
+E06000038,Reading,South East,0.2705,8.3937,South East and East of England
+W06000021,Monmouthshire,Wales,0.2701,5.5008,Wales and South West
+E07000095,Broxbourne,East of England,0.2688,7.5385,South East and East of England
+E06000051,Shropshire,West Midlands,0.2679,4.8463,Midlands and North of England
+E07000072,Epping Forest,East of England,0.2677,7.5952,South East and East of England
+E06000011,East Riding of Yorkshire,Yorkshire and The Humber,0.2665,5.3402,Midlands and North of England
+E06000019,"Herefordshire, County of",West Midlands,0.2651,5.2545,Midlands and North of England
+E07000137,East Lindsey,East Midlands,0.265,5.5311,Midlands and North of England
+E07000178,Oxford,South East,0.2645,7.7116,South East and East of England
+E07000229,Worthing,South East,0.264,7.3279,South East and East of England
+E07000244,East Suffolk,East of England,0.2625,6.9829,South East and East of England
+E07000103,Watford,East of England,0.2621,7.7092,South East and East of England
+E07000080,Forest of Dean,South West,0.2614,5.9057,Wales and South West
+N09000010,"Newry, Mourne and Down",Northern Ireland,0.2612,4.2866,Scotland and Northern Ireland
+E06000043,Brighton and Hove,South East,0.2611,7.3615,South East and East of England
+E07000200,Babergh,East of England,0.2608,6.9589,South East and East of England
+E07000167,Ryedale,Yorkshire and The Humber,0.2603,4.7359,Midlands and North of England
+E07000110,Maidstone,South East,0.2583,7.8633,South East and East of England
+E06000006,Halton,North West,0.2581,6.3693,Midlands and North of England
+E07000188,Sedgemoor,South West,0.2581,6.2746,Wales and South West
+E07000028,Carlisle,North West,0.2572,3.9434,Midlands and North of England
+N09000003,Belfast,Northern Ireland,0.2569,7.0295,Scotland and Northern Ireland
+E07000128,Wyre,North West,0.2569,4.8295,Midlands and North of England
+E07000042,Mid Devon,South West,0.2557,5.4374,Wales and South West
+E08000014,Sefton,North West,0.2557,6.0624,Midlands and North of England
+E07000067,Braintree,East of England,0.2552,7.0643,South East and East of England
+E07000136,Boston,East Midlands,0.2543,6.3742,Midlands and North of England
+E07000071,Colchester,East of England,0.2536,7.3027,South East and East of England
+E09000029,Sutton,London,0.2534,8.5537,London
+E07000170,Ashfield,East Midlands,0.2524,6.3142,Midlands and North of England
+E07000047,West Devon,South West,0.2512,4.8123,Wales and South West
+N09000005,Derry City and Strabane,Northern Ireland,0.251,4.221,Scotland and Northern Ireland
+E07000030,Eden,North West,0.2509,3.8629,Midlands and North of England
+E07000045,Teignbridge,South West,0.2491,5.5072,Wales and South West
+N09000004,Causeway Coast and Glens,Northern Ireland,0.249,3.6291,Scotland and Northern Ireland
+E07000127,West Lancashire,North West,0.2487,5.56,Midlands and North of England
+E07000074,Maldon,East of England,0.2486,6.9566,South East and East of England
+E07000026,Allerdale,North West,0.2485,3.4988,Midlands and North of England
+E09000033,Westminster,London,0.2477,9.4175,London
+S12000021,North Ayrshire,Scotland,0.2473,3.0122,Scotland and Northern Ireland
+E06000030,Swindon,South West,0.2467,7.3692,Wales and South West
+E07000225,Chichester,South East,0.2465,6.5393,South East and East of England
+E08000015,Wirral,North West,0.2465,5.86,Midlands and North of England
+E07000196,South Staffordshire,West Midlands,0.2461,5.9895,Midlands and North of England
+E07000246,Somerset West and Taunton,South West,0.246,5.7377,Wales and South West
+E07000065,Wealden,South East,0.2455,6.5272,South East and East of England
+E07000033,Bolsover,East Midlands,0.2446,5.9046,Midlands and North of England
+E07000235,Malvern Hills,West Midlands,0.2443,5.5882,Midlands and North of England
+N09000002,"Armagh City, Banbridge and Craigavon",Northern Ireland,0.2435,4.8874,Scotland and Northern Ireland
+E07000174,Mansfield,East Midlands,0.2432,6.2264,Midlands and North of England
+E06000058,"Bournemouth, Christchurch and Poole",South West,0.2426,6.8421,Wales and South West
+E07000197,Stafford,West Midlands,0.2426,5.4368,Midlands and North of England
+E07000238,Wychavon,West Midlands,0.2424,5.8724,Midlands and North of England
+E07000187,Mendip,South West,0.2422,5.9939,Wales and South West
+E07000121,Lancaster,North West,0.2421,4.8965,Midlands and North of England
+E07000171,Bassetlaw,East Midlands,0.2421,5.6045,Midlands and North of England
+E07000140,South Holland,East Midlands,0.2419,6.3782,Midlands and North of England
+E07000091,New Forest,South East,0.2419,6.5122,South East and East of England
+E07000198,Staffordshire Moorlands,West Midlands,0.2417,5.4922,Midlands and North of England
+E08000007,Stockport,North West,0.2416,6.576,Midlands and North of England
+E09000006,Bromley,London,0.2408,8.1636,London
+E07000189,South Somerset,South West,0.2403,6.0999,Wales and South West
+S12000008,East Ayrshire,Scotland,0.2402,3.3213,Scotland and Northern Ireland
+E07000041,Exeter,South West,0.2397,6.1882,Wales and South West
+E07000063,Lewes,South East,0.2395,6.5864,South East and East of England
+S12000005,Clackmannanshire,Scotland,0.2394,3.9034,Scotland and Northern Ireland
+N09000006,Fermanagh and Omagh,Northern Ireland,0.2389,3.1302,Scotland and Northern Ireland
+N09000009,Mid Ulster,Northern Ireland,0.2386,4.1925,Scotland and Northern Ireland
+E07000044,South Hams,South West,0.2377,5.0781,Wales and South West
+E07000169,Selby,Yorkshire and The Humber,0.2371,5.4926,Midlands and North of England
+E07000040,East Devon,South West,0.2364,5.4754,Wales and South West
+S12000039,West Dunbartonshire,Scotland,0.2341,3.3595,Scotland and Northern Ireland
+E08000029,Solihull,West Midlands,0.2334,7.1025,Midlands and North of England
+E07000034,Chesterfield,East Midlands,0.2332,5.7538,Midlands and North of England
+E07000163,Craven,Yorkshire and The Humber,0.233,4.6917,Midlands and North of England
+E06000014,York,Yorkshire and The Humber,0.2327,5.4634,Midlands and North of England
+S12000050,North Lanarkshire,Scotland,0.2323,4.143,Scotland and Northern Ireland
+E07000194,Lichfield,West Midlands,0.2316,6.3679,Midlands and North of England
+E07000029,Copeland,North West,0.2316,3.6635,Midlands and North of England
+E07000008,Cambridge,East of England,0.2311,7.3316,South East and East of England
+E07000111,Sevenoaks,South East,0.2293,7.3457,South East and East of England
+E07000144,Broadland,East of England,0.2293,7.0782,South East and East of England
+E07000075,Rochford,East of England,0.2289,7.2982,South East and East of England
+S12000006,Dumfries and Galloway,Scotland,0.2289,3.3109,Scotland and Northern Ireland
+N09000008,Mid and East Antrim,Northern Ireland,0.2282,4.6035,Scotland and Northern Ireland
+E07000126,South Ribble,North West,0.228,5.6798,Midlands and North of England
+E07000177,Cherwell,South East,0.2278,7.2597,South East and East of England
+E06000059,Dorset,South West,0.2274,5.919,Wales and South West
+E06000007,Warrington,North West,0.227,6.159,Midlands and North of England
+E07000011,Huntingdonshire,East of England,0.2265,6.9904,South East and East of England
+E07000078,Cheltenham,South West,0.2258,6.8848,Wales and South West
+E07000217,Woking,South East,0.2255,7.8844,South East and East of England
+E07000092,Rushmoor,South East,0.2252,7.9695,South East and East of England
+S12000042,Dundee City,Scotland,0.2252,3.6156,Scotland and Northern Ireland
+E07000115,Tonbridge and Malling,South East,0.2251,7.6766,South East and East of England
+E06000050,Cheshire West and Chester,North West,0.2243,5.4178,Midlands and North of England
+E07000203,Mid Suffolk,East of England,0.2241,6.9096,South East and East of England
+E07000213,Spelthorne,South East,0.2236,8.3458,South East and East of England
+E07000142,West Lindsey,East Midlands,0.223,5.2904,Midlands and North of England
+E07000096,Dacorum,East of England,0.2229,6.9601,South East and East of England
+E07000245,West Suffolk,East of England,0.2228,7.0271,South East and East of England
+E06000056,Central Bedfordshire,East of England,0.2228,6.9565,South East and East of England
+E07000175,Newark and Sherwood,East Midlands,0.2223,5.8899,Midlands and North of England
+S12000047,Fife,Scotland,0.2208,3.7871,Scotland and Northern Ireland
+E07000241,Welwyn Hatfield,East of England,0.2183,7.2094,South East and East of England
+E07000118,Chorley,North West,0.2182,5.6904,Midlands and North of England
+E07000082,Stroud,South West,0.2173,6.1882,Wales and South West
+E07000212,Runnymede,South East,0.2171,7.9985,South East and East of England
+E07000119,Fylde,North West,0.2158,4.7471,Midlands and North of England
+N09000001,Antrim and Newtownabbey,Northern Ireland,0.2153,5.2834,Scotland and Northern Ireland
+E07000149,South Norfolk,East of England,0.2153,6.8799,South East and East of England
+S12000014,Falkirk,Scotland,0.2152,3.9399,Scotland and Northern Ireland
+E07000098,Hertsmere,East of England,0.215,7.4528,South East and East of England
+E09000020,Kensington and Chelsea,London,0.2138,9.4297,London
+S12000020,Moray,Scotland,0.2135,2.7423,Scotland and Northern Ireland
+E07000084,Basingstoke and Deane,South East,0.2134,7.1933,South East and East of England
+E07000031,South Lakeland,North West,0.2133,4.1518,Midlands and North of England
+E07000099,North Hertfordshire,East of England,0.2111,6.939,South East and East of England
+S12000040,West Lothian,Scotland,0.2109,4.012,Scotland and Northern Ireland
+N09000011,Ards and North Down,Northern Ireland,0.2109,5.1556,Scotland and Northern Ireland
+E07000135,Oadby and Wigston,East Midlands,0.2104,6.631,Midlands and North of England
+E07000166,Richmondshire,Yorkshire and The Humber,0.2103,4.4632,Midlands and North of England
+E07000116,Tunbridge Wells,South East,0.2101,7.0428,South East and East of England
+E07000083,Tewkesbury,South West,0.2096,6.3493,Wales and South West
+E06000024,North Somerset,South West,0.2091,6.0902,Wales and South West
+E07000173,Gedling,East Midlands,0.2079,6.8397,Midlands and North of England
+E07000038,North East Derbyshire,East Midlands,0.2072,5.708,Midlands and North of England
+E07000172,Broxtowe,East Midlands,0.2067,6.8287,Midlands and North of England
+E07000164,Hambleton,Yorkshire and The Humber,0.2064,4.7315,Midlands and North of England
+E07000086,Eastleigh,South East,0.2063,7.2548,South East and East of England
+S12000041,Angus,Scotland,0.206,3.32,Scotland and Northern Ireland
+E08000009,Trafford,North West,0.2059,6.4034,Midlands and North of England
+S12000028,South Ayrshire,Scotland,0.2059,3.1888,Scotland and Northern Ireland
+E09000021,Kingston upon Thames,London,0.2056,8.406,London
+S12000017,Highland,Scotland,0.2054,2.2389,Scotland and Northern Ireland
+E07000032,Amber Valley,East Midlands,0.2054,6.1756,Midlands and North of England
+E07000070,Chelmsford,East of England,0.2044,7.3196,South East and East of England
+E07000068,Brentwood,East of England,0.2039,7.3847,South East and East of England
+E06000049,Cheshire East,North West,0.2036,5.568,Midlands and North of England
+E07000220,Rugby,West Midlands,0.2024,6.4062,Midlands and North of England
+E07000039,South Derbyshire,East Midlands,0.2014,6.3565,Midlands and North of England
+E07000085,East Hampshire,South East,0.201,6.6774,South East and East of England
+E07000234,Bromsgrove,West Midlands,0.2009,6.2441,Midlands and North of England
+E07000221,Stratford-on-Avon,West Midlands,0.2005,5.9747,Midlands and North of England
+E06000025,South Gloucestershire,South West,0.2004,7.1414,Wales and South West
+S12000019,Midlothian,Scotland,0.1999,4.0275,Scotland and Northern Ireland
+E06000036,Bracknell Forest,South East,0.1985,7.7414,South East and East of England
+E07000141,South Kesteven,East Midlands,0.1975,6.1992,Midlands and North of England
+E07000093,Test Valley,South East,0.1967,6.7318,South East and East of England
+E07000134,North West Leicestershire,East Midlands,0.1961,6.4244,Midlands and North of England
+E07000036,Erewash,East Midlands,0.1961,6.8379,Midlands and North of England
+S12000029,South Lanarkshire,Scotland,0.196,3.9672,Scotland and Northern Ireland
+E07000211,Reigate and Banstead,South East,0.1956,7.6153,South East and East of England
+S12000026,Scottish Borders,Scotland,0.1954,3.5478,Scotland and Northern Ireland
+S12000038,Renfrewshire,Scotland,0.195,3.6507,Scotland and Northern Ireland
+E07000087,Fareham,South East,0.1942,7.2968,South East and East of England
+E07000009,East Cambridgeshire,East of England,0.1932,7.1381,South East and East of England
+E07000215,Tandridge,South East,0.1929,7.2136,South East and East of England
+E07000227,Horsham,South East,0.1923,6.8152,South East and East of England
+E07000222,Warwick,West Midlands,0.1914,6.2866,Midlands and North of England
+E06000054,Wiltshire,South West,0.1908,6.3801,Wales and South West
+N09000007,Lisburn and Castlereagh,Northern Ireland,0.1903,5.6676,Scotland and Northern Ireland
+E07000077,Uttlesford,East of England,0.1899,6.6861,South East and East of England
+E07000130,Charnwood,East Midlands,0.1894,6.7606,Midlands and North of England
+S12000010,East Lothian,Scotland,0.1889,3.8613,Scotland and Northern Ireland
+E07000132,Hinckley and Bosworth,East Midlands,0.1886,6.5891,Midlands and North of England
+S12000035,Argyll and Bute,Scotland,0.1886,2.4615,Scotland and Northern Ireland
+E07000037,High Peak,East Midlands,0.1881,5.4104,Midlands and North of England
+S12000048,Perth and Kinross,Scotland,0.1873,3.328,Scotland and Northern Ireland
+S12000027,Shetland Islands,Scotland,0.1872,2.0759,Scotland and Northern Ireland
+E06000037,West Berkshire,South East,0.187,6.9545,South East and East of England
+E07000129,Blaby,East Midlands,0.1863,6.6414,Midlands and North of England
+E06000040,Windsor and Maidenhead,South East,0.1861,7.7459,South East and East of England
+E07000139,North Kesteven,East Midlands,0.1855,5.6485,Midlands and North of England
+E07000094,Winchester,South East,0.1851,6.6963,South East and East of England
+E07000102,Three Rivers,East of England,0.184,7.2874,South East and East of England
+E07000181,West Oxfordshire,South East,0.1838,6.7068,South East and East of England
+E07000124,Ribble Valley,North West,0.1835,4.9705,Midlands and North of England
+S12000033,Aberdeen City,Scotland,0.1834,3.5443,Scotland and Northern Ireland
+E06000022,Bath and North East Somerset,South West,0.1832,6.501,Wales and South West
+E07000079,Cotswold,South West,0.1831,6.0303,Wales and South West
+E07000035,Derbyshire Dales,East Midlands,0.1826,5.1908,Midlands and North of England
+S12000018,Inverclyde,Scotland,0.1824,2.914,Scotland and Northern Ireland
+S12000023,Orkney Islands,Scotland,0.1816,2.1182,Scotland and Northern Ireland
+S12000030,Stirling,Scotland,0.1815,3.4844,Scotland and Northern Ireland
+E07000214,Surrey Heath,South East,0.176,7.7318,South East and East of England
+E07000210,Mole Valley,South East,0.1758,7.3188,South East and East of England
+E07000133,Melton,East Midlands,0.1746,5.9902,Midlands and North of England
+E07000165,Harrogate,Yorkshire and The Humber,0.1742,5.0229,Midlands and North of England
+S12000036,City of Edinburgh,Scotland,0.1724,4.4167,Scotland and Northern Ireland
+E07000180,Vale of White Horse,South East,0.1708,6.945,South East and East of England
+E07000209,Guildford,South East,0.1698,7.4652,South East and East of England
+E07000012,South Cambridgeshire,East of England,0.1695,6.8398,South East and East of England
+E07000228,Mid Sussex,South East,0.1686,7.0013,South East and East of England
+E07000179,South Oxfordshire,South East,0.1679,6.9668,South East and East of England
+E07000242,East Hertfordshire,East of England,0.1675,6.9512,South East and East of England
+S12000013,Na h-Eileanan Siar,Scotland,0.1668,1.7371,Scotland and Northern Ireland
+E07000240,St Albans,East of England,0.1626,7.0597,South East and East of England
+E09000027,Richmond upon Thames,London,0.1557,8.4268,London
+E07000216,Waverley,South East,0.1528,6.9064,South East and East of England
+E07000131,Harborough,East Midlands,0.1525,6.1555,Midlands and North of England
+E06000053,Isles of Scilly,South West,0.1502,3.9588,Wales and South West
+E07000208,Epsom and Ewell,South East,0.1497,8.3498,South East and East of England
+E06000041,Wokingham,South East,0.1458,7.7924,South East and East of England
+E06000017,Rutland,East Midlands,0.1449,6.1714,Midlands and North of England
+S12000034,Aberdeenshire,Scotland,0.1417,2.9359,Scotland and Northern Ireland
+E07000089,Hart,South East,0.1388,7.2323,South East and East of England
+E07000207,Elmbridge,South East,0.1329,8.0802,South East and East of England
+S12000011,East Renfrewshire,Scotland,0.1279,3.7025,Scotland and Northern Ireland
+E07000176,Rushcliffe,East Midlands,0.1262,6.3507,Midlands and North of England
+S12000045,East Dunbartonshire,Scotland,0.125,3.9164,Scotland and Northern Ireland
