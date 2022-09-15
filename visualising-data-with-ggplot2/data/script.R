@@ -46,4 +46,4 @@ write_csv(df, "child_poverty_and_pm25.csv")
 
 sf <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Local_Authority_Districts_December_2021_UK_BUC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>% 
   select(area_code = LAD21CD)
-st_write(sf, "local-authority-districts.geojson")
+st_write(sf, "local_authority_districts.geojson")
