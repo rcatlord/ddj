@@ -1,7 +1,6 @@
 #' ---
 #' title: "Visualising data with ggplot2"
 #' output: github_document
-#' always_allow_html: true
 #' ---
 #'
 #' ## Learning objectives
