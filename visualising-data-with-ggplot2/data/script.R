@@ -39,3 +39,11 @@ df <- left_join(child_poverty, air_pollution, by = "area_name") %>%
   relocate(group, .after = "country_region")
 
 write_csv(df, "child_poverty_and_pm25.csv")
+
+# Local authority boundaries
+# ONS Open Geography Portal
+# URL: https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2021-uk-buc/explore
+
+sf <- st_read("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Local_Authority_Districts_December_2021_UK_BUC/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>% 
+  select(area_code = LAD21CD)
+st_write(sf, "local-authority-districts.geojson")
