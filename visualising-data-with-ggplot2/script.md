@@ -1,13 +1,13 @@
 Visualising data with ggplot2
 ================
-henrypartridge
-2022-09-15
+partrh
+2022-09-16
 
 ## Learning objectives
 
--   basic understanding of ‘grammar of graphics’  
--   able to create simple charts
--   adapt charts to [ONS chart style
+  - basic understanding of ‘grammar of graphics’  
+  - able to create simple charts
+  - adapt charts to [ONS chart style
     guide](https://ons-design.notion.site/ONS-chart-style-guide-abc7605a97624dc2bc7f2a3e16379d82)
 
 ## Data
@@ -26,8 +26,8 @@ published by [DEFRA](https://uk-air.defra.gov.uk/data/pcm-data).
 ## ‘grammar of graphics’
 
 The [ggplot2](https://ggplot2.tidyverse.org) package is underpinned by
-the ‘**g**rammar of **g**raphics’ ([Wilkinson,
-2005](https://link.springer.com/book/10.1007/0-387-28695-0)).
+the ‘**g**rammar of **g**raphics’
+([Wilkinson, 2005](https://link.springer.com/book/10.1007/0-387-28695-0)).
 Essentially, every data visualisation has a formal structure with three
 principle layers: data, aesthetics, and geometry. Variables in your
 **data** are mapped to the **aes**thetic properties (e.g. position, size
@@ -58,7 +58,9 @@ ggplot(data = df,                                        # data
 
 ## Scales
 
-## Colour
+**Axes**
+
+**Colours**
 
 ## Chart furniture
 
@@ -68,20 +70,21 @@ ggplot(data = df,                                        # data
 
 **Annotations**
 
+## Create a custom theme
+
 ## Highlighting
 
 ## Interactivity
 
 ## Further resources
 
--   [ggplot2: Elegant Graphics for Data Analysis, 3rd
-    edition](https://ggplot2-book.org/index.html) by Hadley Wickham et
-    al.
--   [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
--   *R for Data Science* (Wickham & Grolemund) pages on [data
+  - [ggplot2: Elegant Graphics for Data Analysis, 3rd
+    edition](https://ggplot2-book.org) by Hadley Wickham et al.
+  - [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
+  - *R for Data Science* (Wickham & Grolemund) pages on [data
     visualization](https://r4ds.had.co.nz/data-visualisation.html)
--   [A ggplot2 Tutorial for Beautiful Plotting in
+  - [A ggplot2 Tutorial for Beautiful Plotting in
     R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
     by Cédric Scherer
--   [BBC Visual and Data Journalism cookbook for R
+  - [BBC Visual and Data Journalism cookbook for R
     graphics](https://bbc.github.io/rcookbook/)

@@ -10,7 +10,7 @@
 #' 
 
 #' ## Data
-#' We’ll be comparing the percentage of children living in poverty by local authority with levels of air pollution. 
+#' We'll be comparing the percentage of children living in poverty by local authority with levels of air pollution. 
 #' Child poverty after housing costs (2020/21) derive from [End Child Poverty](http://endchildpoverty.org.uk/child-poverty) and population-weighted annual mean PM2.5 concentrations (2020) are published by [DEFRA](https://uk-air.defra.gov.uk/data/pcm-data).
 #'
 #' ## Setup
@@ -67,22 +67,31 @@
 #'
 #' ## Scales
 
-#'
-#' ## Colour
+#' 
+#' **Axes**
+
+
+#' 
+#' **Colours**
 
 
 #'
 #' ## Chart furniture
 #' 
-#' **Gridlines**
+#' **Gridlines**     
 
 
 #' 
-#' **Legend**
+#' **Legend**     
+#' 
 
 
 #' 
-#' **Annotations**
+#' **Annotations**     
+
+
+#'
+#' ## Create a custom theme
 
 
 #'
@@ -95,7 +104,7 @@
 
 #'
 #' ## Further resources
-#' - [ggplot2: Elegant Graphics for Data Analysis, 3rd edition ](https://ggplot2-book.org/index.html) by Hadley Wickham et al.
+#' - [ggplot2: Elegant Graphics for Data Analysis, 3rd edition ](https://ggplot2-book.org) by Hadley Wickham et al.
 #' - [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
 #' - *R for Data Science* (Wickham & Grolemund) pages on [data visualization](https://r4ds.had.co.nz/data-visualisation.html)
 #' - [A ggplot2 Tutorial for Beautiful Plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) by Cédric Scherer 
