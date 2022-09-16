@@ -158,7 +158,9 @@ gg +
   theme(legend.position = "top",
         legend.justification = "left",
         legend.key = element_blank()) +
-  guides(colour = guide_legend(override.aes = list(size = 4)))
+  guides(colour = guide_legend(
+    nrow = 2, byrow = TRUE,
+    override.aes = list(size = 4)))
 
 #' 
 #' **Annotations**     
@@ -201,5 +203,5 @@ gg +
 #' - [ggplot2: Elegant Graphics for Data Analysis, 3rd edition ](https://ggplot2-book.org) by Hadley Wickham et al.
 #' - [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
 #' - *R for Data Science* (Wickham & Grolemund) pages on [data visualization](https://r4ds.had.co.nz/data-visualisation.html)
-#' - [A ggplot2 Tutorial for Beautiful Plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) by CÃ©dric Scherer 
+#' - [A ggplot2 Tutorial for Beautiful Plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) by Cédric Scherer 
 #' - [BBC Visual and Data Journalism cookbook for R graphics](https://bbc.github.io/rcookbook/)

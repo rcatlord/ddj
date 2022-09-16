@@ -25,6 +25,21 @@ published by [DEFRA](https://uk-air.defra.gov.uk/data/pcm-data).
 library(tidyverse)
 ```
 
+    ## ── Attaching packages ──────────────────────────────────────────── tidyverse 1.3.0 ──
+
+    ## ✓ ggplot2 3.3.6     ✓ purrr   0.3.4
+    ## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+    ## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+    ## ✓ readr   1.4.0     ✓ forcats 0.5.1
+
+    ## Warning: package 'tidyr' was built under R version 4.0.5
+
+    ## Warning: package 'dplyr' was built under R version 4.0.5
+
+    ## ── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
+
 ## Read data
 
 ``` r
@@ -98,6 +113,11 @@ df %>%
 
 ``` r
 library(sf)
+```
+
+    ## Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1
+
+``` r
 lad <- st_read("data/local_authority_districts.geojson")
 ```
 
@@ -182,6 +202,13 @@ gg +
 
 ``` r
 library(showtext)
+```
+
+    ## Loading required package: sysfonts
+
+    ## Loading required package: showtextdb
+
+``` r
 # font_families_google() 
 font_add_google("Open Sans")
 showtext_auto()
@@ -218,7 +245,20 @@ gg +
 
 ``` r
 library(scales)
+```
 
+    ## 
+    ## Attaching package: 'scales'
+
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     discard
+
+    ## The following object is masked from 'package:readr':
+    ## 
+    ##     col_factor
+
+``` r
 gg + scale_y_continuous(labels = percent_format(accuracy = 1),
                         limits = c(0,0.6))
 ```
@@ -261,7 +301,9 @@ gg +
   theme(legend.position = "top",
         legend.justification = "left",
         legend.key = element_blank()) +
-  guides(colour = guide_legend(override.aes = list(size = 4)))
+  guides(colour = guide_legend(
+    nrow = 2, byrow = TRUE,
+    override.aes = list(size = 4)))
 ```
 
 ![](outputs/plot16.png)<!-- -->
@@ -321,6 +363,6 @@ gg +
     visualization](https://r4ds.had.co.nz/data-visualisation.html)
 -   [A ggplot2 Tutorial for Beautiful Plotting in
     R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
-    by CÃ©dric Scherer
+    by Cédric Scherer
 -   [BBC Visual and Data Journalism cookbook for R
     graphics](https://bbc.github.io/rcookbook/)
