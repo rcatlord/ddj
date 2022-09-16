@@ -201,6 +201,7 @@ gg +
 #'
 #' ## Further resources
 #' - [ggplot2: Elegant Graphics for Data Analysis, 3rd edition ](https://ggplot2-book.org) by Hadley Wickham et al.
+#' - [R Graphics Cookbook, 2nd edition](https://r-graphics.org/) by Winston Chang
 #' - [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
 #' - *R for Data Science* (Wickham & Grolemund) pages on [data visualization](https://r4ds.had.co.nz/data-visualisation.html)
 #' - [A ggplot2 Tutorial for Beautiful Plotting in R](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/) by Cédric Scherer 
