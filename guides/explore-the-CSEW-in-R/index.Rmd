@@ -53,7 +53,7 @@ dim(csew)
 
 There are 33,734 observations or responses and 2,290 variables. If we download and unzip the [data dictionary](https://doc.ukdataservice.ac.uk/doc/8812/mrdoc/ukda_data_dictionaries.zip) we can find information about all of these variables. We are interested in a variable named `walkdark` which measures feelings of safety when walking alone in the dark.
 
-We can first check all possible values that the `polatt6b` variable can take.
+We can first check all possible values that the `walkdark` variable can take.
 ```{r}
 levels(csew$walkdark)
 ```
