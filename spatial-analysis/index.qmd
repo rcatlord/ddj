@@ -1,0 +1,96 @@
+---
+title: "Case study"
+format: 
+  html:
+    code-overflow: wrap
+    self-contained: true
+    toc: true
+    toc-title: Contents
+    toc-location: right
+    theme: litera
+knitr: 
+  opts_chunk:
+    warning: false
+    message: false   
+---
+
+We'll explore the spatial distribution of ALDI supermarkets in the UK using the `sf` package. 
+
+## Load packages
+```{r}
+library(sf) ; library(tidyverse) ; library(knitr) ; library(reactable) ; library(mapview) ; library(tmaptools) 
+```
+
+## Load data
+```{r}
+# Local Authority District boundaries
+# Source: ONS Open Geography Portal
+# License: Open Government Licence v3.0
+# URL: https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2021-gb-bgc-1
+ltla <- read_sf("data/Local_Authority_Districts_(December_2021)_GB_BGC.geojson")  %>% 
+  st_transform(27700) %>% 
+  select(AREACD = LAD21CD, AREANM = LAD21NM)
+
+# ALDI supermarkets
+# Source: Geolytix
+# License: CC0 https://creativecommons.org/publicdomain/zero/1.0/
+# URL: https://geolytix.com/blog/supermarket-retail-points/
+aldi <- read_csv("data/geolytix_retailpoints_v26_202211.csv") %>% 
+  st_as_sf(coords = c("long_wgs", "lat_wgs"), crs = 4326) %>%
+  st_transform(27700) %>% 
+  filter(str_detect(retailer, "Aldi")) %>% # or choose a different retailer
+  select(retailer, store_name, town, postcode)
+```
+
+## Inspect data
+Check that the CRS match
+```{r}
+st_crs(ltla) == st_crs(aldi)
+```
+
+## Exploratory Spatial Data Analysis (ESDA)
+### Which local authority has the most ALDI supermarkets?
+```{r, eval = FALSE}
+ltla %>% 
+  mutate(n = lengths(st_intersects(., aldi)))
+```
+
+```{r, echo = FALSE}
+ltla %>% 
+  mutate(n = lengths(st_intersects(., aldi))) %>% 
+  st_drop_geometry() %>% 
+  select(-AREACD) %>% 
+  reactable(defaultSorted = list("n" = "desc"), compact = TRUE)
+```
+
+### How many ALDI supermarkets are there in Greater Manchester?
+```{r}
+st_filter(aldi, 
+          filter(ltla, AREANM %in% c("Bolton", "Bury", "Manchester", "Oldham", "Rochdale", "Salford", "Stockport", "Tameside", "Trafford", "Wigan")), 
+          .predicate = st_within) %>% 
+  nrow()
+```
+
+### Where are all the ALDI supermarkets in County Durham?
+```{r}
+durham <- filter(ltla, AREANM == "County Durham")
+aldi_durham <- st_filter(aldi, durham, .predicate = st_within) 
+
+mapview(durham, legend = FALSE) +
+  mapview(aldi_durham, col.regions = "red", legend = FALSE)
+```
+
+### How many ALDI supermarkets are within 10 km (as crow flies) of the Angel of the North?
+```{r}
+point <- geocode_OSM("Angel of the North", as.data.frame = TRUE) %>% 
+  st_as_sf(coords = c(x = "lon", y = "lat"), crs = 4326) %>% 
+  st_transform(27700)
+
+buffer <- st_buffer(point, dist = 10000) # metres
+aldi_10km <- aldi %>% 
+  st_filter(y = buffer, .predicate = st_within)
+
+mapview(buffer, legend = FALSE) +
+  mapview(point, col.regions = "grey", legend = FALSE) +
+  mapview(aldi_10km, col.regions = "red", legend = FALSE)
+```
