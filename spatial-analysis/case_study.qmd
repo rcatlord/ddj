@@ -1,0 +1,177 @@
+---
+title: "Case study"
+format: 
+  html:
+    code-overflow: wrap
+    self-contained: true
+    toc: true
+    toc-title: Contents
+    toc-location: right
+    toc-depth: 4
+    theme: materia
+knitr: 
+  opts_chunk:
+    warning: false
+    message: false   
+---
+
+We'll explore the spatial distribution of ALDI supermarkets in the UK using the `sf` package. You will need a [Mapbox Access Token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/) to use the `mapdesk` package and generate travel time isochrones.
+
+### Load packages
+```{r}
+library(sf) # spatial data manipulation 
+library(tidyverse) # data manipulation
+library(tmaptools) # query OpenStreetMap Nominatim
+library(mapboxapi) # access to the Mapbox Isochrone API
+library(mapdeck) # interactive maps using mapbox GL and deck.gl
+```
+
+### Load data
+```{r}
+# Local Authority District boundaries
+# Source: ONS Open Geography Portal
+# License: Open Government Licence v3.0
+# URL: https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2021-gb-bgc-1
+ltla <- read_sf("data/Local_Authority_Districts_(December_2021)_GB_BGC.geojson")  %>% 
+  st_transform(27700) %>% 
+  select(AREACD = LAD21CD, AREANM = LAD21NM)
+
+# Lower-layer Super Output Area boundaries
+# Source: ONS Open Geography Portal
+# License: Open Government Licence v3.0
+# URL: https://geoportal.statistics.gov.uk/datasets/ons::lsoa-dec-2021-boundaries-generalised-clipped-ew-bgc-v2
+lsoa <- read_sf("data/LSOA_Dec_2021_Boundaries_Generalised_Clipped_EW_BGC_V2.geojson") %>% 
+  st_transform(27700) %>% 
+  select(AREACD = LSOA21CD, AREANM = LSOA21NM)
+
+# ALDI supermarkets
+# Source: Geolytix
+# License: CC0 https://creativecommons.org/publicdomain/zero/1.0/
+# URL: https://geolytix.com/blog/supermarket-retail-points/
+aldi <- read_csv("data/geolytix_retailpoints_v26_202211.csv") %>% 
+  st_as_sf(coords = c("long_wgs", "lat_wgs"), crs = 4326) %>%
+  st_transform(27700) %>% 
+  filter(str_detect(retailer, "Aldi")) %>% # or choose a different retailer
+  select(retailer, store_name, town, postcode)
+```
+
+### Check data
+Get a glimpse of the data
+```{r}
+glimpse(ltla)
+```
+
+```{r}
+glimpse(aldi)
+```
+
+Check that the CRS match
+```{r}
+st_crs(ltla) == st_crs(aldi)
+```
+
+### Exploratory Spatial Data Analysis (ESDA)
+#### Which local authority has the most ALDI supermarkets?
+```{r, eval = FALSE}
+ltla %>% 
+  mutate(n = lengths(st_intersects(., aldi)))
+```
+
+```{r, echo = FALSE}
+ltla %>% 
+  mutate(n = lengths(st_intersects(., aldi))) %>% 
+  st_drop_geometry() %>% 
+  select(-AREACD) %>% 
+  reactable::reactable(defaultSorted = list("n" = "desc"), compact = TRUE)
+```
+
+#### How many ALDI supermarkets are there in Greater Manchester?
+```{r}
+st_filter(aldi, filter(ltla, AREANM %in% c("Bolton", "Bury", "Manchester", "Oldham", "Rochdale", "Salford", "Stockport", "Tameside", "Trafford", "Wigan")), .predicate = st_within) %>%
+  nrow()
+```
+
+#### Where are the ALDI supermarkets in Cardiff?
+```{r}
+cardiff <- filter(ltla, AREANM == "Cardiff")
+aldi_cardiff <- st_filter(aldi, cardiff, .predicate = st_within) 
+
+mapdeck(style = mapdeck_style("light")) %>%
+  add_polygon(data = st_transform(cardiff, 4326),
+              fill_colour = "#00b5db80") %>% 
+  add_pointcloud(data = st_transform(aldi_cardiff, 4326),
+                 elevation = "z",
+                 fill_colour = "#f03d14",
+                 tooltip = "store_name") %>% 
+  mapdeck_view(location = st_centroid(st_geometry(st_transform(cardiff, 4326)))[[1]], zoom = 11)
+```
+
+#### How many ALDI supermarkets are within 10 km of the Angel of the North?
+```{r}
+point <- geocode_OSM("Angel of the North, England", as.data.frame = TRUE) %>% 
+  st_as_sf(coords = c(x = "lon", y = "lat"), crs = 4326) %>% 
+  st_transform(27700)
+
+aldi_distance <- aldi %>% 
+  st_filter(point, .predicate = st_is_within_distance, dist = 10000) # 10km
+
+mapdeck(style = mapdeck_style("light")) %>%
+  add_polygon(data = st_transform(st_buffer(point, dist = 10000), 4326),
+              fill_colour = "#00b5db80") %>% 
+  add_pointcloud(data = st_transform(aldi_distance, 4326),
+                 elevation = "z",
+                 fill_colour = "#f03d14",
+                 tooltip = "store_name") %>% 
+  mapdeck_view(location = st_centroid(st_geometry(st_transform(point, 4326)))[[1]], zoom = 10)
+```
+
+#### How many ALDI supermarkets are within a 30 minute drive of the Angel of the North?
+```{r}
+isochrone <- mb_isochrone("Angel of the North", profile = "driving", time = c(10, 20, 30)) %>%
+  st_transform(27700)
+
+aldi_travel_time <- st_filter(aldi, isochrone, .predicate = st_within) 
+
+mapdeck(style = mapdeck_style("light")) %>%
+  add_polygon(data = st_transform(isochrone, 4326),
+              fill_colour = "time",
+              fill_opacity = 0.5,
+              legend = TRUE,
+              legend_options = list(title = "Time (minutes)")) %>% 
+  add_pointcloud(data = st_transform(aldi_travel_time, 4326),
+                 elevation = "z",
+                 fill_colour = "#f03d14",
+                 tooltip = "store_name") %>% 
+  mapdeck_view(location = st_centroid(st_geometry(st_transform(isochrone, 4326)))[[1]], zoom = 9)
+```
+
+#### What is the average drive time to an ALDI supermarket for each of Carlisle's LSOAs?
+```{r}
+carlisle <- filter(ltla, AREANM == "Carlisle")
+
+carlisle_lsoa <- lsoa %>% 
+  st_filter(carlisle, .predicate = st_intersects)
+
+aldi_carlisle <- aldi %>%
+  st_filter(carlisle, .predicate = st_is_within_distance, dist = 50000)
+
+travel_times <- mb_matrix(carlisle_lsoa, aldi_carlisle)
+min_time <- apply(travel_times, 1, min)
+carlisle_lsoa$time <- min_time
+
+mapdeck(style = mapdeck_style("light")) %>%
+  add_polygon(
+    data = st_transform(carlisle_lsoa, 4326), 
+    fill_colour = "time",
+    fill_opacity = 0.5,
+    palette = colourvalues::get_palette("viridis")[256:1,],
+    legend = TRUE,
+    legend_options = list(title = "Time (minutes)", digits = 0)
+  ) %>% 
+  add_pointcloud(data = st_transform(aldi_carlisle, 4326),
+                 elevation = "z",
+                 fill_colour = "#f03d14",
+                 tooltip = "store_name") %>% 
+  mapdeck_view(location = st_centroid(st_geometry(st_transform(carlisle, 4326)))[[1]], zoom = 8)
+```
+
