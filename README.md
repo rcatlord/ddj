@@ -9,7 +9,8 @@ Materials from the data-driven journalism knowledge sharing sessions.
 ### Semi-guided tutorials
 - [Transforming data with dplyr](https://rcatlord.github.io/ddj/guides/transforming-data-with-dplyr/)
 - [How to explore the CSEW in R](https://rcatlord.github.io/ddj/guides/explore-the-CSEW-in-R/)
-- [Exploring the spatial distribution of ALDI supermarkets](https://rcatlord.github.io/ddj/spatial-analysis/case_study.html)
+- [Exploring the spatial distribution of ALDI supermarkets](https://rcatlord.github.io/ddj/spatial-analysis/case-study/)
+- [Segregation](https://rcatlord.github.io/ddj/spatial-analysis/segregation/)
 
 ---
 
