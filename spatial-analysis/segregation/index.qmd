@@ -1,0 +1,115 @@
+---
+title: "Segregation"
+format: 
+  html:
+    code-overflow: wrap
+    self-contained: true
+    toc: true
+    toc-title: Contents
+    toc-location: right
+    toc-depth: 4
+    theme: materia
+knitr: 
+  opts_chunk:
+    warning: false
+    message: false   
+bibliography: references.bib
+---
+
+```{r, echo = FALSE}
+library(reactable)
+```
+
+The example below assesses the degree of residential age segregation within local authorities in England and Wales.
+
+### Load packages
+
+```{r}
+library(tidyverse) # data manipulation
+library(sf) # spatial data manipulation
+library(segregation) # segregation measures
+library(mapview) # mapping
+```
+
+### Load data
+We'll use 2021 Census data on the number of usual residents by [five-year age bands](https://www.nomisweb.co.uk/datasets/c2021ts007a) at Output Area level. These data will be aggregated to create age bands of 25-40 years and 65 years and over.
+```{r}
+# OA to LAD lookup
+# Source: ONS Open Geography Portal
+# https://geoportal.statistics.gov.uk/datasets/ons::output-area-to-lower-layer-super-output-area-to-middle-layer-super-output-area-to-local-authority-district-december-2021-lookup-in-england-and-wales-v3
+lookup <- read_csv("data/Output_Area_to_Lower_layer_Super_Output_Area_to_Middle_layer_Super_Output_Area_to_Local_Authority_District_(December_2021)_Lookup_in_England_and_Wales_v3.csv") %>% 
+  select(OA21CD, LAD21CD = LAD22CD, LAD21NM = LAD22NM)
+
+# Age by five-year age bands 
+# Source: ONS, 2021 Census
+# URL: https://www.nomisweb.co.uk/datasets/c2021ts007a
+df <- read_csv("data/TS007A.csv", skip = 5) %>% 
+  mutate(aged_25_40 = rowSums((.[,3:5])),
+         aged_65_plus = rowSums((.[,6:10]))) %>% 
+  select(OA21CD = `2021 output area`, aged_25_40, aged_65_plus, usual_residents = Total) %>% 
+  left_join(lookup, by = "OA21CD") %>% 
+  pivot_longer(-c(OA21CD,LAD21CD,LAD21NM), names_to = "variable", values_to = "n")
+```
+
+## Index of dissimilarity
+The Index of Dissimilarity (*D*) is a measure of neighbourhood segregation. The index is given by the formula:
+
+$$
+D = \frac{1}{2}\sum\limits_{i=1}^{N}\left |\frac{x_i}{X}-\frac{y_i}{Y}  \right |
+$$ where $x_i$ represents the population of group $X$ in the $i$th area (e.g. Output Area); $X$ is the total population of that group in the area it is nested within (e.g. a Local Authority); and $y_i$ and $Y$ are the equivalent numbers for the second group. Values of *D* can range from 0 to 1, with a high index indicating a dominant population group in an area and a lower index a more equal distribution of groups.
+
+First, let’s find out how many usual residents in England and Wales were aged between 25 - 40 years and 65 or more years on 21 March 2021.
+
+```{r}
+df %>% 
+  pivot_wider(names_from = variable, values_from = n) %>% 
+  summarise(aged_25_40_pct = round(sum(aged_25_40)/sum(usual_residents)*100,1),
+            aged_65_plus_pct = round(sum(aged_65_plus)/sum(usual_residents)*100,1)) %>% 
+  reactable(
+    columns = list(
+    aged_25_40_pct = colDef(name = "Aged 25-40 years (%)"),
+    aged_65_plus_pct = colDef(name = "Aged 65+ years (%)")
+    )
+    )
+```
+
+We can then use the `dissimilarity` function from the `segregation` package [@segregation] to calculate residential segregation.
+```{r}
+df %>% 
+  filter(variable %in% c("aged_25_40", "aged_65_plus")) %>%
+  dissimilarity(
+    group = "variable",
+    unit = "OA21CD",
+    weight = "n"
+    )
+```
+
+The *D* index of segregation between usual residents aged 25-40 years and 65+ years for Output Areas in England & Wales is **0.33**. In other words, 33% of 25-40 years olds would have to swap places with those aged 65+ in order for all OAs to have the same proportion of 25-40 (20.1%) and 65+ residents (18.4%) in them. 
+
+To calculate dissimilarity for Output Areas nested within Local Authority Districts in England & Wales we can run:
+```{r}
+dissimilarity <- df %>%
+  filter(variable %in% c("aged_25_40", "aged_65_plus")) %>%
+  group_by(LAD21CD, LAD21NM) %>% 
+  group_modify(~ dissimilarity(.x,
+                               group = "variable",
+                               unit = "OA21CD",
+                               weight = "n")) %>% 
+  arrange(desc(est))
+```
+
+Peterborough is the most age segregated local authority district in England & Wales at the Output Area level (*D* = 0.35). In other words, Peterborough's neighbourhoods don't have equal shares of usual residents aged 25-50 years and 65 years or more. There are several neighbourhoods where a particular age group dominates.
+
+In contrast, Newham (*D* = 0.16) is much more diverse with a fairly even spread of usual residents aged 25-50 years and 65 years or more.
+
+```{r, echo=FALSE}
+reactable(select(dissimilarity, -c(LAD21CD, stat)),
+          columns = list(
+            est = colDef(format = colFormat(digits = 3))
+            )
+          )
+```
+
+## Additional resources
+- Roelens, T. & Bervoet, D. (2021, March 27). Van Brugge tot Brussel: België wordt steeds meer een etnische smeltkroes. De Tijd. [https://multimedia.tijd.be/diversiteit](https://multimedia.tijd.be/diversiteit/)
+- Catney, G., Lloyd, C.D., Ellis, M., Wright, R., Finney, N., Jivraj, S. & Manley, D. (2023) Ethnic diversification and neighbourhood mixing: A rapid response analysis of the 2021 Census of England and Wales. *The Geographical Journal*, 189, 63–77. [https://doi.org/10.1111/geoj.12507](https://doi.org/10.1111/geoj.12507)
