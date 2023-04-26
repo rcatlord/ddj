@@ -34,6 +34,13 @@ library(mapview) # mapping
 ### Load data
 We'll use 2021 Census data on the number of usual residents by [five-year age bands](https://www.nomisweb.co.uk/datasets/c2021ts007a) at Output Area level. These data will be aggregated to create age bands of 25-40 years and 65 years and over.
 ```{r}
+# Local authority district boundaries
+# Source: ONS Open Geography Portal
+# URL: https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-december-2021-uk-buc-1
+lad <- read_sf("https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Local_Authority_Districts_December_2021_UK_BUC_2022/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson") %>% 
+  filter(str_detect(LAD21CD, "^E|^W")) %>% 
+  select(LAD21CD)
+
 # OA to LAD lookup
 # Source: ONS Open Geography Portal
 # https://geoportal.statistics.gov.uk/datasets/ons::output-area-to-lower-layer-super-output-area-to-middle-layer-super-output-area-to-local-authority-district-december-2021-lookup-in-england-and-wales-v3
@@ -61,34 +68,36 @@ $$ where $x_i$ represents the population of group $X$ in the $i$th area (e.g. Ou
 First, let’s find out how many usual residents in England and Wales were aged between 25 - 40 years and 65 or more years on 21 March 2021.
 
 ```{r}
-df %>% 
+stats <- df %>% 
   pivot_wider(names_from = variable, values_from = n) %>% 
   summarise(aged_25_40_pct = round(sum(aged_25_40)/sum(usual_residents)*100,1),
-            aged_65_plus_pct = round(sum(aged_65_plus)/sum(usual_residents)*100,1)) %>% 
-  reactable(
-    columns = list(
-    aged_25_40_pct = colDef(name = "Aged 25-40 years (%)"),
-    aged_65_plus_pct = colDef(name = "Aged 65+ years (%)")
-    )
-    )
+            aged_65_plus_pct = round(sum(aged_65_plus)/sum(usual_residents)*100,1))
+
+reactable(stats,
+          columns = list(
+            aged_25_40_pct = colDef(name = "Aged 25-40 years (%)"),
+            aged_65_plus_pct = colDef(name = "Aged 65+ years (%)")
+            )
+          )
 ```
 
 We can then use the `dissimilarity` function from the `segregation` package [@segregation] to calculate residential segregation.
 ```{r}
-df %>% 
+dissimilarity <- df %>% 
   filter(variable %in% c("aged_25_40", "aged_65_plus")) %>%
   dissimilarity(
     group = "variable",
     unit = "OA21CD",
     weight = "n"
     )
+dissimilarity
 ```
 
-The *D* index of segregation between usual residents aged 25-40 years and 65+ years for Output Areas in England & Wales is **0.33**. In other words, 33% of 25-40 years olds would have to swap places with those aged 65+ in order for all OAs to have the same proportion of 25-40 (20.1%) and 65+ residents (18.4%) in them. 
+The *D* index of segregation between usual residents aged 25-40 years and 65+ years for Output Areas in England & Wales is **`r round(dissimilarity$est,2)`**. In other words, `r round(dissimilarity$est,0)`% of 25-40 years olds would have to swap places with those aged 65+ in order for all OAs to have the same proportion of 25-40 (`r stats$aged_25_40_pct`%) and 65+ residents (`r stats$aged_65_plus_pct`%) in them. 
 
 To calculate dissimilarity for Output Areas nested within Local Authority Districts in England & Wales we can run:
 ```{r}
-dissimilarity <- df %>%
+local_dissimilarity <- df %>%
   filter(variable %in% c("aged_25_40", "aged_65_plus")) %>%
   group_by(LAD21CD, LAD21NM) %>% 
   group_modify(~ dissimilarity(.x,
@@ -98,16 +107,22 @@ dissimilarity <- df %>%
   arrange(desc(est))
 ```
 
-Peterborough is the most age segregated local authority district in England & Wales at the Output Area level (*D* = 0.35). In other words, Peterborough's neighbourhoods don't have equal shares of usual residents aged 25-50 years and 65 years or more. There are several neighbourhoods where a particular age group dominates.
+Richmondshire is the most age segregated local authority district in England & Wales at the Output Area level (*D* = 0.44). In other words, few of Richmondshire's neighbourhoods have an equal share of usual residents aged 25-50 years and 65 years or more. There are several neighbourhoods where a particular age group dominates.
 
-In contrast, Newham (*D* = 0.16) is much more diverse with a fairly even spread of usual residents aged 25-50 years and 65 years or more.
+In contrast, Blaenau Gwent (*D* = 0.18) is much more diverse with a fairly even spread of usual residents aged 25-50 years and 65 years or more.
 
 ```{r, echo=FALSE}
-reactable(select(dissimilarity, -c(LAD21CD, stat)),
+reactable(select(local_dissimilarity, -c(LAD21CD, stat)),
           columns = list(
             est = colDef(format = colFormat(digits = 3))
             )
           )
+```
+
+```{r}
+sf <- left_join(lad, local_dissimilarity, by = "LAD21CD") %>% 
+  relocate(geometry, .after = est)
+mapview(sf, zcol = "est", layer.name = "Dissimilarity index")
 ```
 
 ## Additional resources
