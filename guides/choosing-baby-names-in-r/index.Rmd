@@ -1,0 +1,386 @@
+---
+pagetitle: "Choosing baby names in R"
+lang: "en-GB"
+output:
+  html_document:
+    theme: united
+    highlight: haddock
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    self_contained: TRUE
+    df_print: tibble
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse) ; library(ukbabynames) ; library(ggokabeito) ; library(reactable) ; library(ggrepel)
+```
+
+# Choosing baby names in R
+Let's explore baby names published by the [Office for National Statistics](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/babynamesenglandandwales/2020) and made available by the [ukbabynames](https://cran.r-project.org/web/packages/ukbabynames/index.html) R package using the [tidyverse](https://www.tidyverse.org/) suite of tools.
+
+### Setup
+```{r, eval=FALSE}
+library(tidyverse) ; library(ukbabynames)
+```
+
+### Inspect the data
+```{r, eval=FALSE}
+slice(ewbabynames, 1:10)
+```
+
+```{r, echo=FALSE}
+slice(ewbabynames, 1:10) |>
+  reactable()
+```
+
+### Boys' names starting with "V"
+```{r, eval=FALSE}
+ewbabynames |> 
+  filter(year == 2020, sex == "M", str_detect(name, "^V")) |>
+  select(name, n, rank) |>
+  slice_max(n, n = 5)
+```
+
+```{r, echo=FALSE}
+ewbabynames |> 
+  filter(year == 2020, sex == "M", str_detect(name, "^V")) |>
+  select(name, n, rank) |>
+  slice_max(n, n = 5) |>
+  reactable()
+```
+
+### Boys' names starting with and including "v"
+```{r, eval=FALSE}
+ewbabynames |> 
+  filter(year == 2020, sex == "M", str_detect(name, "(?i)v")) |>
+  select(name, n, rank) |>
+  slice_max(n, n = 5)
+```
+
+```{r, echo=FALSE}
+ewbabynames |> 
+  filter(year == 2020, sex == "M", str_detect(name, "(?i)v")) |>
+  select(name, n, rank) |>
+  slice_max(n, n = 5) |>
+  reactable()
+```
+
+### Shortest name by sex
+```{r, eval=FALSE}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex) |>
+  mutate(length = str_length(name)) |>
+  slice_min(length) |>
+  select(name, n, rank, length) |>
+  arrange(length)
+```
+
+```{r, echo=FALSE}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex) |>
+  mutate(length = str_length(name)) |>
+  slice_min(length) |>
+  select(name, n, rank, length) |>
+  arrange(length) |>
+  reactable()
+```
+
+### Longest name by sex
+```{r, eval=FALSE}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex) |>
+  mutate(length = str_length(name)) |> 
+  slice_max(length) |> 
+  select(name, n, rank, length) |>
+  arrange(desc(length))
+```
+
+```{r, echo=FALSE}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex) |>
+  mutate(length = str_length(name)) |> 
+  slice_max(length) |> 
+  select(name, n, rank, length) |>
+  arrange(desc(length)) |>
+  reactable()
+```
+
+
+### Length of names by sex
+```{r}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex) |>
+  count(length = str_length(name), wt = n) |>
+  ggplot(aes(length, n)) +
+  geom_col(aes(fill = sex), show.legend = FALSE) +
+  scale_x_continuous(expand = c(0,0), breaks = c(0:19)) +
+  scale_y_continuous(expand = c(0,0), labels = scales::comma) +
+  scale_fill_manual(values = c("Male" = "#2CC3AB", "Female" = "#8F5EF8")) +
+  facet_wrap(~sex, ncol = 1) +
+  labs(x = NULL, y = NULL,
+       title = "Length of baby names",
+       subtitle = "England & Wales, 2020",
+       caption = "Source: Office for National Statistics") +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)),
+        strip.text.x = element_text(hjust = 0, size = 11, face = "italic"))
+```
+
+### Most common first letter
+```{r}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(first = toupper(str_sub(name, 1, 1)),
+         sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex, first) |>
+  summarise(n = n()) |>
+  ggplot(aes(first, n)) +
+  geom_col(aes(fill = sex), show.legend = FALSE) +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,1200), labels = scales::comma) +
+  scale_fill_manual(values = c("Male" = "#2CC3AB", "Female" = "#8F5EF8")) +
+  facet_wrap(~sex, ncol = 1) +
+  labs(x = NULL, y = NULL,
+       title = "First letter of baby names",
+       subtitle = "England & Wales, 2020",
+       caption = "Source: Office for National Statistics") +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)),
+        strip.text.x = element_text(hjust = 0, size = 11, face = "italic"))
+```
+
+### Most common last letter
+```{r}
+ewbabynames |> 
+  filter(year == 2020) |>
+  mutate(last = toupper(str_sub(name, -1, -1)),
+         sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex, last) |>
+  summarise(n = n()) |>
+  ggplot(aes(last, n)) +
+  geom_col(aes(fill = sex), show.legend = FALSE) +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,3000), labels = scales::comma) +
+  scale_fill_manual(values = c("Male" = "#2CC3AB", "Female" = "#8F5EF8")) +
+  facet_wrap(~sex, ncol = 1) +
+  labs(x = NULL, y = NULL,
+       title = "Last letter of baby names",
+       subtitle = "England & Wales, 2020",
+       caption = "Source: Office for National Statistics") +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)),
+        strip.text.x = element_text(hjust = 0, size = 11, face = "italic"))
+```
+
+### Unique names per year
+```{r}
+inner_join(arrange(count(ewbabynames, name),n), 
+           summarise(group_by(ewbabynames, name),min_year = min(year))) |>
+  filter(n == 1) |>
+  ggplot(aes(min_year)) +
+  geom_bar(fill = "seagreen")  +
+  scale_x_continuous(expand = c(0,0), breaks = c(1996,2000,2004,2008,2012,2016,2020)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,800), labels = scales::comma) +
+  labs(x = NULL, y = NULL,
+       title = "Number of unique names",
+       subtitle = "England & Wales, 1996-2020",
+       caption = "Source: Office for National Statistics") +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)),
+        strip.text.x = element_text(hjust = 0, size = 11, face = "italic"))
+```
+
+### Unique names over time by sex
+```{r}
+ewbabynames |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex, year) |>
+  summarise(prop_unique = n()/sum(n)) |>
+  ggplot(aes(year, prop_unique, color = sex)) + 
+  geom_line(linewidth = 1) +
+  scale_x_continuous(expand = c(0,0), breaks = c(1996,2000,2004,2008,2012,2016,2020)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,NA)) +
+  scale_colour_manual(values = c("Male" = "#2CC3AB", "Female" = "#8F5EF8")) +
+  labs(x = NULL, y = NULL,
+       title = "Unique baby names as a proportion of total names",
+       subtitle = "England & Wales, 1996-2020",
+       caption = "Source: Office for National Statistics",
+       colour = NULL) +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)))
+```
+
+### Dominance of most popular name over time
+```{r}
+ewbabynames |>
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |>
+  group_by(sex, year) |>
+  mutate(prop = n / sum(n)) |>
+  top_n(1, wt = prop) |> 
+  ggplot(aes(year, prop, color = sex)) +
+  geom_line() +
+  geom_line(linewidth = 1) +
+  scale_x_continuous(expand = c(0,0), breaks = c(1996,2000,2004,2008,2012,2016,2020)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,0.04), labels = scales::label_percent(accuracy = 1L)) +
+  scale_colour_manual(values = c("Male" = "#2CC3AB", "Female" = "#8F5EF8")) +
+  labs(x = NULL, y = NULL,
+       title = "Most popular name as percentage of all names",
+       subtitle = "England & Wales, 1996-2020",
+       caption = "Source: Office for National Statistics",
+       colour = NULL) +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)))
+```
+
+### Gender neutral names over time
+```{r}
+ewbabynames |>
+  count(name, year) |>
+  filter(n == 2) |>
+  count(year, sort = TRUE) |> 
+  ggplot(aes(year, n)) +
+  geom_line(linewidth = 1, colour = "cornflowerblue") +
+  scale_x_continuous(expand = c(0,0), breaks = c(1996,2000,2004,2008,2012,2016,2020)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,700)) +
+  labs(x = NULL, y = NULL,
+       title = "Gender neutral names over time",
+       subtitle = "England & Wales, 1996-2020",
+       caption = "Source: Office for National Statistics",
+       colour = NULL) +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)))
+```
+
+### Most common gender neutral names
+```{r}
+filter(ewbabynames, year == 2020, 
+       name %in% pull(filter(count(filter(ewbabynames, year == 2020),name),n == 2),name)) |>
+  select(sex, name, n) |> 
+  mutate(sex = fct_recode(sex, "Female" = "F", "Male" = "M")) |> 
+  pivot_wider(names_from = sex, values_from = n) |> 
+  mutate(prop = round(Female/(Female+Male)*100,1)) |> 
+  filter(between(prop, 49,51)) |> 
+  arrange(desc(prop), desc(Female)) |> 
+  reactable()
+```
+
+### Gender neutrality of "River" over time
+```{r}
+id <- "Indy"
+sub <- filter(ewbabynames, name == id) |> 
+  mutate(n = case_when(sex == "M" ~ n*-1, TRUE ~n))
+
+ggplot() +
+  geom_area(data = filter(sub, sex == "F"),
+            aes(x = year, y = n, fill = sex),
+            position = "stack", show.legend = FALSE) +
+  geom_area(data = filter(sub, sex == "M"),
+            aes(x = year, y = n, fill = sex),
+            position = "stack", show.legend = FALSE) +
+  geom_hline(yintercept = 0) +
+  scale_x_continuous(expand = c(0,0), breaks = c(1996,2000,2004,2008,2012,2016,2020)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_fill_manual(values = c("#8F5EF8", "#2CC3AB")) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = paste("Popularity of",  id, "by sex"),
+       subtitle = "England & Wales, 1996-2020",
+       caption = "Source: Office for National Statistics") +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)),
+        legend.position = "right") +
+  ggrepel::geom_text_repel(data = filter(sub, sex == "F" & year == 2020), 
+                  aes(x = year, y = n, label = paste("Female\n", n)),
+                  nudge_x = 2, nudge_y = 2, size = 3.5, col = "#8F5EF8", fontface = "bold", segment.color = NA) +
+  ggrepel::geom_text_repel(data = filter(sub, sex == "M" & year == 2020), 
+                  aes(x = year, y = n, label = paste("Male\n", abs(n))),
+                  nudge_x = 0.5, nudge_y = -2, size = 3.5, col = "#2CC3AB", fontface = "bold", segment.color = NA)
+```
+
+### Popularity of names from Succession
+```{r}
+ewbabynames |>
+  filter(name %in% c("Logan", "Connor", "Kendall", "Roman") & sex == "M" |
+           name == "Siobhan" & sex == "F") |>
+  ggplot(aes(x = year, y = n, color = name)) +
+  geom_line(linewidth = 1) +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_continuous(expand = c(0,0), limits = c(0,5500),  labels = scales::comma) +
+  ggokabeito::scale_color_okabe_ito() +
+  labs(x = NULL, y = NULL,
+       title = "Popularity of names from Succession TV series",
+       subtitle = "England & Wales, 1996-2020",
+       caption = "Source: Office for National Statistics",
+       colour = NULL) +
+  theme_minimal() +
+  theme(plot.margin = unit(rep(0.5, 4), "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(),
+        plot.title = element_text(size = 18, face = "bold"),
+        plot.subtitle = element_text(size = 14, margin = margin(b = 20)),
+        plot.caption = element_text(hjust = 0, margin = margin(t = 20)))
+```
