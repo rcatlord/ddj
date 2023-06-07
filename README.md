@@ -11,6 +11,7 @@ Materials from the data-driven journalism knowledge sharing sessions.
 - [How to explore the CSEW in R](https://rcatlord.github.io/ddj/guides/explore-the-CSEW-in-R/)
 - [Exploring the spatial distribution of ALDI supermarkets](https://rcatlord.github.io/ddj/spatial-analysis/case-study/)
 - [Segregation](https://rcatlord.github.io/ddj/spatial-analysis/segregation/)
+- [Choosing baby names in R](https://rcatlord.github.io/ddj/guides/choosing-baby-names-in-r)
 
 ---
 
