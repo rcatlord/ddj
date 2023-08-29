@@ -10,7 +10,7 @@
 #' 
 
 #' ## Data
-#' We'll be exploring a translation of [Dante's *Divine Comedy*](https://www.gutenberg.org/cache/epub/1004/pg1004-images.html). Written in the early 1300s, the *Commedia* is broken down into three divisions: *Inferno*, *Purgatorio* and *Paradiso*).
+#' We'll be exploring a translation of [Dante's *Divine Comedy*](https://www.gutenberg.org/cache/epub/1004/pg1004-images.html). Written in the early 1300s, the *Commedia* is broken down into three divisions: *Inferno*, *Purgatorio* and *Paradiso*.
 #'
 #'<img src="img/caetani.jpg" alt="Map of the Divine Comedy. Adapted from Michelangelo Caetani, c.1870" width="200"/>
 #'
