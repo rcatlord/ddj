@@ -226,7 +226,7 @@ tidy_text %>%
   coord_fixed()
 ```
 
-![](script_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](outputs/plot1.png)<!-- -->
 
 **Term frequency - inverse document frequency**  
 *Relative importance of a term in a document*
@@ -318,7 +318,7 @@ tidy_text %>%
     ## i If a many-to-many relationship is expected, set `relationship =
     ##   "many-to-many"` to silence this warning.
 
-![](script_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](outputs/plot2.png)<!-- -->
 
 **Change in sentiment**
 
@@ -342,7 +342,7 @@ tidy_text %>%
     ## i If a many-to-many relationship is expected, set `relationship =
     ##   "many-to-many"` to silence this warning.
 
-![](script_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](outputs/plot3.png)<!-- -->
 
 ### N-grams
 
@@ -486,7 +486,7 @@ word_topics %>%
   labs(x = expression(beta), y = NULL)
 ```
 
-![](script_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](outputs/plot4.png)<!-- -->
 
 **Document-topic probabilities**  
 *For each topic and document what is the probability of that document
@@ -506,7 +506,7 @@ song_topics %>%
   labs(x = expression(gamma), y = "Topic")
 ```
 
-![](script_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](outputs/plot5.png)<!-- -->
 
 ## Further resources
 
