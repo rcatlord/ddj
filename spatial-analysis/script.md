@@ -21,8 +21,10 @@ library(sf)
 
 ## Read data
 
-Local authority Districts Source: ONS Open Geography Portal URL:
-<https://geoportal.statistics.gov.uk/datasets/ons>::local-authority-districts-december-2021-gb-bgc-1
+Local authority Districts 
+Source: ONS Open Geography Portal 
+URL: https://geoportal.statistics.gov.uk/datasets/ons>::local-authority-districts-december-2021-gb-bgc-1
+
 Load GeoJSON / ESRI Shapefile
 
 ``` r
