@@ -17,7 +17,6 @@
 
 library(tidyverse)
 library(sf)
-library(tmap)
 
 #' 
 #' ## Read data 
@@ -98,10 +97,10 @@ plot(scilly_pos$geometry, add = T, col = "red")
 
 #' ## Point in polygon  
 #' 
-#' Blue plaques
-#' Source: http://openplaques.org
-#' Licence: Public Domain Dedication and License 1.0
-plaques <- read_csv("data/openplaques/open-plaques-gb-2021-05-14.csv") %>% 
+#' Blue plaques     
+#' Source: http://openplaques.org     
+#' Licence: Public Domain Dedication and License 1.0     
+plaques <- read_csv("data/open-plaques-gb-2021-05-14.csv") %>% 
   filter(colour == "blue" & !is.na(latitude)) %>% 
   st_as_sf(crs = 4326, coords = c("longitude", "latitude")) %>% 
   st_transform(27700)
@@ -126,4 +125,5 @@ plot(s_lad$geometry, col = ifelse(str_detect(s_lad$AREACD, "^E"), "red", NA))
 #' ## Further resources
 #' - Lovelace, R., Nowosad, J., & Muenchow, J. (2023). [Geocomputation with R](https://geocompr.robinlovelace.net/index.html). 2nd edition.
 #' - ONS Geography. (2021). [Introduction to GIS in R](https://onsgeo.github.io/geospatial-training/docs/intro_to_gis_in_r). Online course.
-#'
+#' - Rich Harris. (2022-2023). [Mapping and Modelling Geographic Data in R](https://profrichharris.github.io/MandM/). Online course.
+#' 
