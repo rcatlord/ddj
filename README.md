@@ -6,7 +6,7 @@ Materials from the data-driven journalism knowledge sharing sessions.
 - [Transforming data with dplyr](https://github.com/rcatlord/ddj/blob/main/transforming-data-with-dplyr/script.md)
 - [Visualising data with ggplot2](https://github.com/rcatlord/ddj/blob/main/visualising-data-with-ggplot2/script.md)
 - [Text analysis](https://github.com/rcatlord/ddj/blob/main/text-analysis/script.md)
-- [Spatial analysi](https://github.com/rcatlord/ddj/blob/main/spatial-analysis/script.md)
+- [Spatial analysis](https://github.com/rcatlord/ddj/blob/main/spatial-analysis/script.md)
 
 ### Semi-guided tutorials
 - [Transforming data with dplyr](https://rcatlord.github.io/ddj/guides/transforming-data-with-dplyr/)
